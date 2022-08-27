@@ -65,9 +65,11 @@ export default function Age() {
             defaultValue={searchParams.get("ageAtTheDateOf") ?? today}
           />
         </label>
-        <div className="flex items-center justify-center gap-x-2">
-          <Button type="submit">Calculate</Button>
-          <Button type="reset" className="text-red-400">
+        <div className="mx-auto flex w-full items-center justify-center gap-x-2 sm:w-2/3 md:w-1/3">
+          <Button type="submit" className="w-full">
+            Calculate
+          </Button>
+          <Button type="reset" className="w-full text-red-400">
             Reset
           </Button>
         </div>

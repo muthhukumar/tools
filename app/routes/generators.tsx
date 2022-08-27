@@ -59,13 +59,13 @@ export default function Generators() {
           </select>
         </label>
         {data && <div className="mt-4 rounded-md border py-2 px-3">{data}</div>}
-        <div className="mt-6 flex justify-center">
-          <Button type="submit" className="mr-2">
+        <div className="mx-auto mt-6 flex w-full items-center justify-center gap-x-2 sm:w-2/3 md:w-1/3">
+          <Button type="submit" className="w-full">
             Generate
           </Button>
           <Button
             type="button"
-            className="text-amber-400"
+            className="text-amber-400 w-full"
             onClick={handleCopyToClipboard}
           >
             Copy
