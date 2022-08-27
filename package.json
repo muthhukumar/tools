@@ -41,10 +41,10 @@
     "react-hot-toast": "^2.3.0",
     "tailwind-merge": "^1.6.0",
     "tiny-invariant": "^1.2.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "@faker-js/faker": "^7.4.0"
   },
   "devDependencies": {
-    "@faker-js/faker": "^7.4.0",
     "@remix-run/dev": "^1.7.0",
     "@remix-run/eslint-config": "^1.7.0",
     "@tailwindcss/forms": "^0.5.2",
