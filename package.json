@@ -34,14 +34,17 @@
     "@remix-run/server-runtime": "^1.7.0",
     "bcryptjs": "^2.4.3",
     "isbot": "^3.5.1",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "tailwind-merge": "^1.6.0",
     "tiny-invariant": "^1.2.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.4.0",
     "@remix-run/dev": "^1.7.0",
     "@remix-run/eslint-config": "^1.7.0",
+    "@tailwindcss/forms": "^0.5.2",
     "@testing-library/cypress": "^8.0.3",
     "@testing-library/dom": "^8.17.1",
     "@testing-library/jest-dom": "^5.16.5",

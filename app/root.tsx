@@ -1,4 +1,4 @@
-import type { LinksFunction,  MetaFunction } from "@remix-run/node";
+import type { LinksFunction, MetaFunction } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -16,13 +16,9 @@ export const links: LinksFunction = () => {
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "Remix Notes",
+  title: "Utilities and Calculators",
   viewport: "width=device-width,initial-scale=1",
 });
-
-// export async function loader({ request }: LoaderArgs) {
-//   return json({});
-// }
 
 export default function App() {
   return (
@@ -32,7 +28,9 @@ export default function App() {
         <Links />
       </head>
       <body className="h-full">
-        <Outlet />
+        <div className="mx-auto h-full max-w-2xl px-4 py-8">
+          <Outlet />
+        </div>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
