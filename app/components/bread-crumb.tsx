@@ -38,7 +38,7 @@ export default function BreadCrumb(props: BreadCrumbProps) {
   return (
     <div
       {...props}
-      className={twMerge("font-semibold flex items-center gap-x-2", props.className)}
+      className={twMerge("font-semibold flex items-center gap-x-2 pb-3 border-b", props.className)}
     >
       {locations.map((currentLocation, index) => (
         <React.Fragment key={currentLocation.id}>
