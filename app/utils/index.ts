@@ -20,5 +20,9 @@ export function getDiffBetweenTwoDates({
 }
 
 export function getToday() {
-  return moment().utcOffset("+05:30").format('YYYY-MM-DD');
+  return moment().utcOffset("+05:30").format("YYYY-MM-DD");
+}
+
+export function validateEmail(email: unknown): email is string {
+  return typeof email === "string" && email.length > 3 && email.includes("@");
 }
