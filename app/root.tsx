@@ -11,7 +11,7 @@ import {
 } from "@remix-run/react";
 
 import tailwindStylesheetUrl from "./styles/tailwind.css";
-import { BreadCrumb } from "./components";
+import { BreadCrumb, Footer } from "./components";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: tailwindStylesheetUrl }];
@@ -35,6 +35,7 @@ export default function App() {
           <BreadCrumb className="mb-8" />
           <Outlet />
         </div>
+        <Footer />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
