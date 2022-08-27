@@ -2,6 +2,7 @@ import { Link, useLocation } from "@remix-run/react";
 import * as React from "react";
 import { twMerge } from "tailwind-merge";
 import { v4 as uuidV4 } from "uuid";
+import { capitalCase } from "change-case";
 
 import { capitalize } from "~/utils";
 
@@ -38,7 +39,10 @@ export default function BreadCrumb(props: BreadCrumbProps) {
   return (
     <div
       {...props}
-      className={twMerge("font-semibold flex items-center gap-x-2 pb-3 border-b", props.className)}
+      className={twMerge(
+        "flex items-center gap-x-2 border-b pb-3 font-semibold",
+        props.className
+      )}
     >
       {locations.map((currentLocation, index) => (
         <React.Fragment key={currentLocation.id}>
@@ -46,7 +50,7 @@ export default function BreadCrumb(props: BreadCrumbProps) {
             to={currentLocation.path}
             className="text-sm active:text-blue-600"
           >
-            {currentLocation.name}
+            {capitalCase(currentLocation.name)}
           </Link>
           {index + 1 < locations.length && <span className="text-xs">/</span>}
         </React.Fragment>

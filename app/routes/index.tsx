@@ -13,6 +13,10 @@ const links = [
     to: "/generators/password",
     title: "Password Generator",
   },
+  {
+    to: "/toss-a-coin",
+    title: "Toss a coin",
+  },
 ];
 
 export default function Index() {

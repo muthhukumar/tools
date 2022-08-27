@@ -92,3 +92,7 @@ export function generatePassword(options: {
 
   return result;
 }
+
+export function tossCoin() {
+  return Math.ceil(Math.random() * 10) > 5 ? "Tails" : "Heads";
+}
