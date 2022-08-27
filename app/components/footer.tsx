@@ -2,7 +2,7 @@ import { Link } from "@remix-run/react";
 
 export default function Footer() {
   return (
-    <footer className="mx-auto max-w-2xl border-t px-2 py-4 text-sm">
+    <footer className="mx-auto py-6 max-w-2xl border-t text-sm">
       <div className="flex flex-col items-start md:flex-row justify-between">
         <p className="font-semibold">Calculators, Generators and others.</p>
         <div className="mt-4 md:mt-0 flex flex-col  gap-y-2 text-xs">

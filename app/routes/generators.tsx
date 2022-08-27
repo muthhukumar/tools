@@ -10,7 +10,7 @@ import { json } from "@remix-run/server-runtime";
 import copyToClipboard from "copy-to-clipboard";
 import { toast } from "react-hot-toast";
 
-import { Button, Heading } from "~/components";
+import { Button, DisplayContent, Heading } from "~/components";
 import { capitalize, generateRandom, options } from "~/utils";
 
 export function loader({ request }: LoaderArgs) {
@@ -58,7 +58,7 @@ export default function Generators() {
             ))}
           </select>
         </label>
-        {data && <div className="mt-4 rounded-md border py-2 px-3">{data}</div>}
+        {data && <DisplayContent className="my-4">{data}</DisplayContent>}
         <div className="mx-auto mt-6 flex w-full items-center justify-center gap-x-2 sm:w-2/3 md:w-1/3">
           <Button type="submit" className="w-full">
             Generate

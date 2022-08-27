@@ -57,3 +57,38 @@ export function capitalize(value: string) {
 
   return value.charAt(0).toUpperCase() + value.slice(1);
 }
+
+export function stringToBoolean(value: string) {
+  return value === "true" ? true : false;
+}
+
+export function generatePassword(options: {
+  length: number;
+  upperCaseAlphabets: boolean;
+  lowerCaseAlphabets: boolean;
+  numbers: boolean;
+  specialCharacters: boolean;
+}) {
+  const upperCaseAlphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const lowerCaseAlphabets = "abcdefghijklmnopqrstuvwxyz";
+  const numbers = "0123456789";
+  const specialCharacters = "!@#$%^&*";
+
+  let charset = "";
+  let result = "";
+
+  if (options.upperCaseAlphabets) charset += upperCaseAlphabets;
+  if (options.lowerCaseAlphabets) charset += lowerCaseAlphabets;
+  if (options.numbers) charset += numbers;
+  if (options.specialCharacters) charset += specialCharacters;
+
+  for (
+    let iterator = 0, length = charset.length;
+    iterator < options.length;
+    ++iterator
+  ) {
+    result += charset.charAt(Math.random() * length);
+  }
+
+  return result;
+}

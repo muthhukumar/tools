@@ -35,7 +35,9 @@ export default function App() {
           <BreadCrumb className="mb-8" />
           <Outlet />
         </div>
-        <Footer />
+        <div className="px-4">
+          <Footer />
+        </div>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
