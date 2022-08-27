@@ -33,12 +33,15 @@
     "@remix-run/serve": "^1.7.0",
     "@remix-run/server-runtime": "^1.7.0",
     "bcryptjs": "^2.4.3",
+    "copy-to-clipboard": "^3.3.2",
     "isbot": "^3.5.1",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.3.0",
     "tailwind-merge": "^1.6.0",
-    "tiny-invariant": "^1.2.0"
+    "tiny-invariant": "^1.2.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.4.0",
@@ -55,6 +58,7 @@
     "@types/node": "^18.7.13",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "@types/uuid": "^8.3.4",
     "@vitejs/plugin-react": "^2.0.1",
     "@vitest/coverage-c8": "^0.22.1",
     "autoprefixer": "^10.4.8",

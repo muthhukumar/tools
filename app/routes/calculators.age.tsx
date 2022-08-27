@@ -1,7 +1,12 @@
 import type { LoaderArgs } from "@remix-run/server-runtime";
 
 import { json } from "@remix-run/server-runtime";
-import { Form, useLoaderData, useSearchParams } from "@remix-run/react";
+import {
+  Form,
+  useLoaderData,
+  useSearchParams,
+  useSubmit,
+} from "@remix-run/react";
 
 import { Button, DateInput, Divider, Heading } from "~/components";
 import { getDiffBetweenTwoDates, getToday } from "~/utils";
@@ -29,6 +34,8 @@ export default function Age() {
   const { ageCalculation, today } = useLoaderData<typeof loader>();
   const [searchParams] = useSearchParams();
 
+  const submit = useSubmit();
+
   return (
     <div>
       <Heading className="mb-8">Age Calculator</Heading>
@@ -36,25 +43,28 @@ export default function Age() {
         className="flex flex-col gap-y-4"
         method="get"
         action="/calculators/age"
+        onReset={() =>
+          submit(null, { method: "get", action: "/calculators/age" })
+        }
       >
-        <div>
-          <label htmlFor="dateOfBirth">Date of birth</label>
+        <label htmlFor="dateOfBirth">
+          <span>Date of birth</span>
           <DateInput
             id="dateOfBirth"
             name="dateOfBirth"
             required
             defaultValue={searchParams.get("dateOfBirth") ?? ""}
           />
-        </div>
-        <div>
-          <label htmlFor="ageAtTheDateOf">Age at the date of</label>
+        </label>
+        <label htmlFor="ageAtTheDateOf">
+          <span>Age at the date of</span>
           <DateInput
             id="ageAtTheDateOf"
             name="ageAtTheDateOf"
             required
             defaultValue={searchParams.get("ageAtTheDateOf") ?? today}
           />
-        </div>
+        </label>
         <div className="flex items-center justify-center gap-x-2">
           <Button type="submit">Calculate</Button>
           <Button type="reset" className="text-red-400">
@@ -71,7 +81,9 @@ export default function Age() {
             <p>{ageCalculation.years} years old</p>
             <p>{ageCalculation.months} months old</p>
             <p>{ageCalculation.weeks} weeks old</p>
-            <p>{ageCalculation.days} Days old</p>
+            <p>{ageCalculation.days} days old</p>
+            <p>{ageCalculation.hours} hours old</p>
+            <p>{ageCalculation.minutes} minutes old</p>
             <p>{ageCalculation.seconds} seconds old</p>
           </div>
         </>
