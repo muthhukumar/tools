@@ -17,6 +17,10 @@ const links = [
     to: "/toss-a-coin",
     title: "Toss a coin",
   },
+  {
+    to: "/base64",
+    title: "Base 64",
+  },
 ];
 
 export default function Index() {

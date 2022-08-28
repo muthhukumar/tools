@@ -5,3 +5,4 @@ export { default as DisplayContent } from "./display-content";
 export { default as Divider } from "./divider";
 export { default as Footer } from "./footer";
 export { default as Heading } from "./heading";
+export { default as TextInput } from "./text-input";

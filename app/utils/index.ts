@@ -30,6 +30,12 @@ export function validateEmail(email: unknown): email is string {
   return typeof email === "string" && email.length > 3 && email.includes("@");
 }
 
+export function randomNumberGenerator(min: number, max: number) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 export const options = {
   name: faker.name.fullName,
   email: faker.internet.email,
@@ -43,6 +49,7 @@ export const options = {
   word: faker.word.adjective,
   phone: faker.phone.number,
   vehicle: faker.vehicle.vehicle,
+  number: randomNumberGenerator.bind(null, 1, 1000000000),
 };
 
 export function generateRandom(option: keyof typeof options) {
@@ -95,4 +102,32 @@ export function generatePassword(options: {
 
 export function tossCoin() {
   return Math.ceil(Math.random() * 10) > 5 ? "Tails" : "Heads";
+}
+
+export const encodeOptions = {
+  ascii: "ascii",
+  base64: "base64",
+  base64url: "base64url",
+  binary: "binary",
+  hex: "hex",
+  latin1: "latin1",
+  "ucs-2": "ucs-2",
+  ucs2: "ucs2",
+  "utf-8": "utf-8",
+  utf16le: "utf16le",
+  utf8: "utf8",
+};
+
+export function stringToBase64(
+  data: string,
+  outputOption: keyof typeof encodeOptions
+) {
+  if (!outputOption) {
+    return Buffer.from(data).toString("base64");
+  }
+  return Buffer.from(data).toString(outputOption);
+}
+
+export function base64ToString(data: string, format: keyof typeof encodeOptions) {
+  return Buffer.from(data, format).toString("ascii");
 }
