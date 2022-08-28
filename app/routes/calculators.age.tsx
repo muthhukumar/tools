@@ -1,4 +1,4 @@
-import type { LoaderArgs } from "@remix-run/server-runtime";
+import type { LoaderArgs, MetaFunction } from "@remix-run/server-runtime";
 
 import { json } from "@remix-run/server-runtime";
 import {
@@ -10,6 +10,12 @@ import {
 
 import { Button, DateInput, Divider, Heading } from "~/components";
 import { getDiffBetweenTwoDates, getToday } from "~/utils";
+
+export const meta: MetaFunction = () => {
+  return {
+    title: "Age calculator",
+  };
+};
 
 export async function loader({ request }: LoaderArgs) {
   const url = new URL(request.url);

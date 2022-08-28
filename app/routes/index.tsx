@@ -21,6 +21,10 @@ const links = [
     to: "/base64",
     title: "Base 64",
   },
+  {
+    to: "/remove-spaces",
+    title: "Remove spaces",
+  },
 ];
 
 export default function Index() {

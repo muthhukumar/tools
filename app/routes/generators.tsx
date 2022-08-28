@@ -1,4 +1,4 @@
-import type { LoaderArgs } from "@remix-run/server-runtime";
+import type { LoaderArgs, MetaFunction } from "@remix-run/server-runtime";
 
 import {
   Form,
@@ -12,6 +12,12 @@ import { toast } from "react-hot-toast";
 
 import { Button, DisplayContent, Heading } from "~/components";
 import { capitalize, generateRandom, options } from "~/utils";
+
+export const meta: MetaFunction = () => {
+  return {
+    title: "Generators",
+  };
+};
 
 export function loader({ request }: LoaderArgs) {
   const url = new URL(request.url);

@@ -1,4 +1,4 @@
-import type { LoaderArgs } from "@remix-run/server-runtime";
+import type { LoaderArgs, MetaFunction } from "@remix-run/server-runtime";
 
 import { json } from "@remix-run/server-runtime";
 import {
@@ -14,6 +14,12 @@ import {
   encodeOptions,
   stringToBase64,
 } from "~/utils";
+
+export const meta: MetaFunction = () => {
+  return {
+    title: "Encode and Decode base64",
+  };
+};
 
 export async function loader({ request }: LoaderArgs) {
   const url = new URL(request.url);

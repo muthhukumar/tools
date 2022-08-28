@@ -1,4 +1,4 @@
-import type { LoaderArgs } from "@remix-run/server-runtime";
+import type { LoaderArgs, MetaFunction } from "@remix-run/server-runtime";
 
 import { Form, useLoaderData, useSubmit } from "@remix-run/react";
 import { toast } from "react-hot-toast";
@@ -7,6 +7,12 @@ import copyToClipboard from "copy-to-clipboard";
 
 import { Button, DisplayContent, Divider, Heading } from "~/components";
 import { generatePassword, stringToBoolean } from "~/utils";
+
+export const meta: MetaFunction = () => {
+  return {
+    title: "Password generator",
+  };
+};
 
 export function loader({ request }: LoaderArgs) {
   const url = new URL(request.url);

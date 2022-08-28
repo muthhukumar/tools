@@ -128,6 +128,13 @@ export function stringToBase64(
   return Buffer.from(data).toString(outputOption);
 }
 
-export function base64ToString(data: string, format: keyof typeof encodeOptions) {
+export function base64ToString(
+  data: string,
+  format: keyof typeof encodeOptions
+) {
   return Buffer.from(data, format).toString("ascii");
+}
+
+export function removeWhiteSpaces(value: string) {
+  return String(value).replace(/\s/g, "");
 }

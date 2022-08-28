@@ -31,7 +31,7 @@ export default function App() {
         <Links />
       </head>
       <body className="h-full">
-        <div className="mx-auto h-full max-w-2xl px-4 py-8">
+        <div className="mx-auto min-h-[100vh] max-w-2xl px-4 py-8">
           <BreadCrumb className="mb-8" />
           <Outlet />
         </div>
