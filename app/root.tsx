@@ -1,4 +1,4 @@
-import type { LinksFunction, MetaFunction } from "@remix-run/node";
+import { json, LinksFunction, MetaFunction } from "@remix-run/node";
 
 import * as React from "react";
 import { Toaster } from "react-hot-toast";
@@ -9,6 +9,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
   useLocation,
 } from "@remix-run/react";
 
@@ -28,14 +29,24 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
+export async function loader() {
+  return json({
+    ENV: {
+      APP_ENV: process.env.NODE_ENV,
+    },
+  });
+}
+
 export default function App() {
   const location = useLocation();
+  const { ENV } = useLoaderData<typeof loader>();
 
   React.useEffect(() => {
     if (GTAG_ID) {
       gtag.pageview(location.pathname, GTAG_ID);
     }
   }, [location]);
+
   return (
     <html lang="en" className="h-full">
       <head>
@@ -43,7 +54,7 @@ export default function App() {
         <Links />
       </head>
       <body className="h-full">
-        {process.env.NODE_ENV === "development" || !GTAG_ID ? null : (
+        {ENV.APP_ENV === "development" ? null : (
           <>
             <script
               async
