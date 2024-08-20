@@ -1,8 +1,7 @@
-import type { LoaderArgs, MetaFunction } from "@remix-run/server-runtime";
-
 import { json } from "@remix-run/server-runtime";
 import {
   Form,
+  MetaFunction,
   useLoaderData,
   useSearchParams,
   useSubmit,
@@ -14,14 +13,17 @@ import {
   encodeOptions,
   stringToBase64,
 } from "~/utils";
+import { LoaderFunction } from "@remix-run/node";
 
 export const meta: MetaFunction = () => {
-  return {
-    title: "Encode and Decode base64",
-  };
+  return [
+    {
+      title: "Encode and Decode base64",
+    },
+  ];
 };
 
-export async function loader({ request }: LoaderArgs) {
+export const loader: LoaderFunction = ({ request }) => {
   const url = new URL(request.url);
 
   const data = url.searchParams.get("data") ?? "";
@@ -39,7 +41,7 @@ export async function loader({ request }: LoaderArgs) {
       : base64ToString(data, encodeOption as keyof typeof encodeOptions);
 
   return json({ result });
-}
+};
 
 export default function Base64() {
   const { result } = useLoaderData<typeof loader>();

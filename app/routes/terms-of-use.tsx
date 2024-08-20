@@ -1,12 +1,12 @@
-import type { MetaFunction } from "@remix-run/server-runtime";
-
+import { MetaFunction } from "@remix-run/node";
 import { Heading } from "~/components";
 
-
 export const meta: MetaFunction = () => {
-  return {
-    title: "Terms of use",
-  };
+  return [
+    {
+      title: "Terms of use",
+    },
+  ];
 };
 
 export default function TermsOfUse() {

@@ -1,70 +1,43 @@
-import { json, LinksFunction, MetaFunction } from "@remix-run/node";
+import * as React from "react"
+import {Links, Meta, Outlet, Scripts, ScrollRestoration, useLocation} from "@remix-run/react"
+import "./tailwind.css"
+import {GTAG_ID} from "./utils/gtags"
 
-import * as React from "react";
-import { Toaster } from "react-hot-toast";
-import {
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-  useLoaderData,
-  useLocation,
-} from "@remix-run/react";
+import * as gtag from "~/utils/gtags"
+import {MetaFunction} from "@remix-run/node"
 
-import tailwindStylesheetUrl from "./styles/tailwind.css";
-import { BreadCrumb, Footer } from "./components";
-import { GTAG_ID } from "./utils/gtags";
+export const meta: MetaFunction = () => [
+  {
+    charset: "utf-8",
+    title: "Utilities and Calculators",
+    viewport: "width=device-width,initial-scale=1",
+  },
+]
 
-import * as gtag from "~/utils/gtags";
-
-export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: tailwindStylesheetUrl }];
-};
-
-export const meta: MetaFunction = () => ({
-  charset: "utf-8",
-  title: "Utilities and Calculators",
-  viewport: "width=device-width,initial-scale=1",
-});
-
-export async function loader() {
-  return json({
-    ENV: {
-      APP_ENV: process.env.NODE_ENV,
-    },
-  });
-}
-
-export default function App() {
-  const location = useLocation();
-  const { ENV } = useLoaderData<typeof loader>();
+export function Layout({children}: {children: React.ReactNode}) {
+  const location = useLocation()
 
   React.useEffect(() => {
     if (GTAG_ID) {
-      gtag.pageview(location.pathname, GTAG_ID);
+      gtag.pageview(location.pathname, GTAG_ID)
     }
-  }, [location]);
+  }, [location])
 
   return (
     <html lang="en" className="h-full">
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
       <body className="h-full">
-        {ENV.APP_ENV === "development" ? null : (
-          <>
-            <script
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${GTAG_ID}`}
-            />
-            <script
-              async
-              id="gtag-init"
-              dangerouslySetInnerHTML={{
-                __html: `
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GTAG_ID}`} />
+        <script
+          async
+          id="gtag-init"
+          dangerouslySetInnerHTML={{
+            __html: `
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
@@ -72,22 +45,16 @@ export default function App() {
                   page_path: window.location.pathname,
                 });
               `,
-              }}
-            />
-          </>
-        )}
-        <div className="mx-auto min-h-[100vh] max-w-2xl px-4 py-8">
-          <BreadCrumb className="mb-8" />
-          <Outlet />
-        </div>
-        <div className="px-4">
-          <Footer />
-        </div>
+          }}
+        />
+        {children}
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
-        <Toaster position="top-right" />
       </body>
     </html>
-  );
+  )
+}
+
+export default function App() {
+  return <Outlet />
 }

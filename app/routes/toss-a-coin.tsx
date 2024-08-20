@@ -1,15 +1,15 @@
-import type { MetaFunction } from "@remix-run/server-runtime";
-
-import { Form, useLoaderData } from "@remix-run/react";
+import { Form, MetaFunction, useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/server-runtime";
 
 import { Button, DisplayContent, Heading } from "~/components";
 import { tossCoin } from "~/utils";
 
 export const meta: MetaFunction = () => {
-  return {
-    title: "Toss a Coin",
-  };
+  return [
+    {
+      title: "Toss a Coin",
+    },
+  ];
 };
 
 export function loader() {

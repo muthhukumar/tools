@@ -1,18 +1,20 @@
-import type { MetaFunction } from "@remix-run/server-runtime";
-
-import { Link } from "@remix-run/react";
+import { Link, MetaFunction, Outlet } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
-
-  return {
-    title: "Calculators",
-  };
+  return [
+    {
+      title: "Calculators",
+    },
+  ];
 };
 
 export default function Calculators() {
   return (
     <div>
-      <Link to="age" className="text-blue-500"> 1. Age Calculator</Link>
+      <Link to="age" className="text-blue-500">
+        1. Age Calculator
+      </Link>
+      <Outlet />
     </div>
   );
 }

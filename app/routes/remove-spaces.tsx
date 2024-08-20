@@ -1,22 +1,24 @@
-import type { LoaderArgs, MetaFunction } from "@remix-run/server-runtime";
-
 import { json } from "@remix-run/server-runtime";
 import {
   Form,
+  MetaFunction,
   useLoaderData,
   useSearchParams,
   useSubmit,
 } from "@remix-run/react";
 import { Button, DisplayContent, Divider, Heading } from "~/components";
 import { removeWhiteSpaces } from "~/utils";
+import { LoaderFunctionArgs } from "@remix-run/node";
 
 export const meta: MetaFunction = () => {
-  return {
-    title: "Remove spaces",
-  };
+  return [
+    {
+      title: "Remove spaces",
+    },
+  ];
 };
 
-export function loader({ request }: LoaderArgs) {
+export function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
 
   const data = String(url.searchParams.get("data") ?? "");

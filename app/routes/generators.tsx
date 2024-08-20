@@ -1,7 +1,7 @@
-import type { LoaderArgs, MetaFunction } from "@remix-run/server-runtime";
-
+import { LoaderFunctionArgs } from "@remix-run/node";
 import {
   Form,
+  MetaFunction,
   useLoaderData,
   useSearchParams,
   useSubmit,
@@ -14,12 +14,14 @@ import { Button, DisplayContent, Heading } from "~/components";
 import { capitalize, generateRandom, options } from "~/utils";
 
 export const meta: MetaFunction = () => {
-  return {
-    title: "Generators",
-  };
+  return [
+    {
+      title: "Generators",
+    },
+  ];
 };
 
-export function loader({ request }: LoaderArgs) {
+export function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
 
   const generate = (url.searchParams.get("generate") ??
@@ -29,13 +31,13 @@ export function loader({ request }: LoaderArgs) {
 }
 
 export default function Generators() {
-  const { data } = useLoaderData();
+  const { data } = useLoaderData<typeof loader>();
   const [searchParams] = useSearchParams();
 
   const submit = useSubmit();
 
   const handleCopyToClipboard = () => {
-    copyToClipboard(data);
+    copyToClipboard(String(data));
     toast.success("Copied!", { duration: 2000 });
   };
 

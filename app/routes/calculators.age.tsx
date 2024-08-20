@@ -1,8 +1,7 @@
-import type { LoaderArgs, MetaFunction } from "@remix-run/server-runtime";
-
 import { json } from "@remix-run/server-runtime";
 import {
   Form,
+  MetaFunction,
   useLoaderData,
   useSearchParams,
   useSubmit,
@@ -10,14 +9,17 @@ import {
 
 import { Button, DateInput, Divider, Heading } from "~/components";
 import { getDiffBetweenTwoDates, getToday } from "~/utils";
+import { LoaderFunctionArgs } from "@remix-run/node";
 
 export const meta: MetaFunction = () => {
-  return {
-    title: "Age calculator",
-  };
+  return [
+    {
+      title: "Age calculator",
+    },
+  ];
 };
 
-export async function loader({ request }: LoaderArgs) {
+export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
 
   const dateOfBirth = url.searchParams.get("dateOfBirth");

@@ -1,4 +1,9 @@
-import { Link } from "@remix-run/react";
+import type {MetaFunction} from "@remix-run/node"
+import {Link} from "@remix-run/react"
+
+export const meta: MetaFunction = () => {
+  return [{title: "Tools"}, {name: "description", content: "Muthukumar's Personal tools"}]
+}
 
 const links = [
   {
@@ -25,18 +30,18 @@ const links = [
     to: "/remove-spaces",
     title: "Remove spaces",
   },
-];
+]
 
 export default function Index() {
   return (
     <main>
       <div className="flex flex-col gap-y-3">
-        {links.map((link) => (
+        {links.map(link => (
           <Link key={link.to} to={link.to} className="text-blue-500">
             {link.title}
           </Link>
         ))}
       </div>
     </main>
-  );
+  )
 }
